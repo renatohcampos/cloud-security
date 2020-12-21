@@ -1,0 +1,16 @@
+adam : adam hax0rs developers
+billy : billy developers
+http : http
+instructor : instructor adm sudo docker
+jack : jack sudo
+jane : jane
+john : john
+max : max hax0rs developers
+sally : sally developers
+student : student sudo docker
+sysadmin : sysadmin adm cdrom sudo dip plugdev lpadmin sambashare docker
+vagrant : vagrant
+
+There are unexpected users named jack and john.
+The user max is a member of a suspicious group called hax0rs.
+The users http, vagrant were created by apps, but this is not the case for john.

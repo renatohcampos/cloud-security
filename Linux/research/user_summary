@@ -1,0 +1,14 @@
+PROBLEMS/SOLUTIONS:
+
+P1: There are unexpected users named jack and john.
+S1: The users have been removed and their home folders copied into: /home/sysadmin/research/suspicious-home-folders
+
+P2: The users adam and max were a members of a suspicious group called hax0rs.
+S2: The users adam and max were removed from the group hax0rs.
+
+P3: There is an unexpected group called hax0rs.
+S3: The group has been removed.
+
+ADDITIONAL NOTES:
+
+The users http, vagrant were created by apps, but this is not the case for john.

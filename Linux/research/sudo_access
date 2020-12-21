@@ -1,0 +1,39 @@
+User adam is not allowed to run sudo on UbuntuDesktop.
+User billy is not allowed to run sudo on UbuntuDesktop.
+Matching Defaults entries for instructor on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User instructor may run the following commands on UbuntuDesktop:
+    (ALL : ALL) ALL
+Matching Defaults entries for jack on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User jack may run the following commands on UbuntuDesktop:
+    (ALL : ALL) ALL
+User jane is not allowed to run sudo on UbuntuDesktop.
+Matching Defaults entries for max on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User max may run the following commands on UbuntuDesktop:
+    (ALL : ALL) /usr/bin/less
+User sally is not allowed to run sudo on UbuntuDesktop.
+Matching Defaults entries for student on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User student may run the following commands on UbuntuDesktop:
+    (ALL : ALL) ALL
+Matching Defaults entries for sysadmin on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User sysadmin may run the following commands on UbuntuDesktop:
+    (ALL : ALL) ALL
+Matching Defaults entries for vagrant on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User vagrant may run the following commands on UbuntuDesktop:
+    (ALL : ALL) NOPASSWD: ALL
+Matching Defaults entries for jack on UbuntuDesktop:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User jack may run the following commands on UbuntuDesktop:
+    (ALL : ALL) ALL
