@@ -39,19 +39,19 @@ These files have been tested and used to generate a live ELK deployment on Azure
 This document contains the following details:
 - Description of the Topology
 
-  Redundant web servers are accessed over HTTP through the load balancer. The JumpBox-Provisioner can be directly accessed through SSH, and can also SSH into all Web VMs, as well as the ELK-Net machine in a different region. Within the JumpBox-Provisioner, Docker is used to manage containers for an Ansible container in  JumpBox-Provisioner. This Ansible container then uses YAML playbooks and configuration files to manage DVWA containers in each Web VM. 
+  Redundant web servers are accessed over HTTP through the load balancer. The JumpBox-Provisioner can be directly accessed through SSH, and can also SSH into all Web VMs, as well as the ELK-Net machine in a different region. Within the JumpBox-Provisioner, Docker is used to manage containers for an Ansible container in  JumpBox-Provisioner. This Ansible container then uses YAML playbooks and configuration files to manage DVWA containers in each Web VM, and the ELK container in ELK-Net.
 
 - Access Policies
 
-  The Web VMs can be accessed via SSH through the Ansible container within JumpBox-Provisioner. The JumpBox-Provisioner is accessible through SSH via a public IP. Web VM services can be accessed through a browser over HTTP to the Read-Team-LoadBalancer. 
+  The Web VMs can be accessed via SSH through the Ansible container within JumpBox-Provisioner. The JumpBox-Provisioner is accessible through SSH via a public IP. Web VM web services and ELK-Net web services can be accessed through a browser over HTTP to the Read-Team-LoadBalancer. 
 
 - ELK Configuration
-  - Beats in Use
+  - Beats in Use: elasticsearch, haproxy, kafka, kibana, nats, osquery, and santa.
   - Machines Being Monitored: Web-1, Web-2, Web-3
   
 - How to Use the Ansible Build
 
-  
+  First create configuration files for a given container service, and add the host IP of the VM that will act as a shell for the service to the hosts file. Next, configure the container with a YAML playbook, and then run the YAML playbook.
 
 
 ### Description of the Topology
