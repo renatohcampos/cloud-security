@@ -132,7 +132,7 @@ SSH into the control node and follow the steps below:
 
 -  **Question:** Which file is the playbook? Where do you copy it?
 
-  **Answer:** Playbook files should be within the Ansible directory. In this case there are playbooks in the Ansible directory, and in the roles directory. The important thing to note here is that when the playbook is called, the the proper filepath is used.
+   **Answer:** Playbook files should be within the Ansible directory. In this case there are playbooks in the Ansible directory, and in the roles directory. The important thing to note here is that when the playbook is called, the the proper filepath is used.
 
 - **Question:** Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
 
