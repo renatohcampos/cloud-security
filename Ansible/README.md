@@ -4,17 +4,54 @@ The files in this repository were used to configure the network depicted below.
 
 ![elk-diagram](../Diagrams/elk-diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select YAML files such as`filebeat.yml`may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+**filebeat.yml**
+
+```
+---
+- name: installing and launching filebeat
+  hosts: webservers
+  become: yes
+  tasks:
+
+  - name: download filebeat deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+ 
+  - name: install filebeat deb
+    command: dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: drop in filebeat.yml 
+    copy:
+      src: /etc/ansible/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: enable and configure system module
+    command: sudo filebeat modules enable system
+
+  - name: setup filebeat
+    command: sudo filebeat setup
+
+  - name: start filebeat service
+    command: sudo service filebeat start
+```
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
+
+  Redundant web servers are accessed over HTTP through the load balancer. The JumpBox-Provisioner can be directly accessed through SSH, and can also SSH into all Web VMs, as well as the ELK-Net machine in a different region. Within the JumpBox-Provisioner, Docker is used to manage containers for an Ansible container in  JumpBox-Provisioner. This Ansible container then uses YAML playbooks and configuration files to manage DVWA containers in each Web VM. 
+
 - Access Policies
+
+  The Web VMs can be accessed via SSH through the Ansible container within JumpBox-Provisioner. The JumpBox-Provisioner is accessible through SSH via a public IP. Web VM services can be accessed through a browser over HTTP to the Read-Team-LoadBalancer. 
+
 - ELK Configuration
   - Beats in Use
-  - Machines Being Monitored
+  - Machines Being Monitored: Web-1, Web-2, Web-3
+  
 - How to Use the Ansible Build
+
+  
 
 
 ### Description of the Topology
@@ -31,12 +68,14 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name                  | Function      | IP Address    | Operating System |
+| --------------------- | ------------- | ------------- | ---------------- |
+| JumpBox-Provisoner    | Gateway       | 10.0.0.5      | Linux            |
+| Red-Team-LoadBalancer | Load Balancer | 104.40.10.164 | -                |
+| Web-1                 | Web Server    | 10.0.0.6      | Linux            |
+| Web-2                 | Web Server    | 10.0.0.7      | Linux            |
+| Web-3                 | Web Server    | 10.0.0.8      | Linux            |
+| ELK-Net               | ELK Stack     | 10.1.0.4      | Linux            |
 
 ### Access Policies
 
@@ -50,11 +89,11 @@ Machines within the network can only be accessed by _____.
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name                | Publicly Accessible | Allowed IP Addresses                   |
+| ------------------- | ------------------- | -------------------------------------- |
+| JumpBox-Provisoner  | Yes                 | 10.0.0.6, 10.0.0.7, 10.0.0.8, 10.1.0.4 |
+| Web-1, Web-2, Web-3 | No                  | None                                   |
+| ELK-Net             | Yes                 | None                                   |
 
 ### Elk Configuration
 
@@ -96,4 +135,4 @@ _TODO: Answer the following questions to fill in the blanks:_
 - _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
 - _Which URL do you navigate to in order to check that the ELK server is running?
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+
