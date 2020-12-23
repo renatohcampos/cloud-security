@@ -61,7 +61,7 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 Load balancing ensures that the application will be highly availiable, in addition to restricting access to the network.
 - Load balancers protect the availiability aspect of the CIA triad. The advantage of a JumpBox-Provisioner machine is that 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the foiles and system security.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the files and system security.
 - Filebeat watches for changes to files (or their locations) as previously specified and then forwards them to Elasticsearch and Logstash for indexing.
 - Metricbeat records system's CPU usage, memory, file system, disk usage, and network statistics.
 
@@ -100,10 +100,9 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - This would take far too much time to do and you would have to set up new routes, users, software, and manage the Operating System - each new node at a time.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
-- 
+- Installation of Docker.io, Python3-pip, and the YAML Docker module.
+- Virtual memory increase for target container.
+- Downloading of OS image and installation of Docker container.
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -112,13 +111,15 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+- Web-1
+- Web-2
+- Web-3
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeats and Metricbeats are installed onto the Docker containers within these machines.
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- *As previously stated*, Filebeat watches for changes to files (or their locations) as previously specified and then forwards them to Elasticsearch and Logstash for indexing. Metricbeat records system's CPU usage, memory, file system, disk usage, and network statistics.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -141,5 +142,3 @@ SSH into the control node and follow the steps below:
 - **Question:**   Which URL do you navigate to in order to check that the ELK server is running?
 
    **Answer:**     `http://<PublicIPAddressOfELK-Net>:5601/app/kibana`
-
-
