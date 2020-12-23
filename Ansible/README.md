@@ -140,6 +140,6 @@ SSH into the control node and follow the steps below:
 
 - **Question:**   Which URL do you navigate to in order to check that the ELK server is running?
 
-   **Answer:**     `http://<>:5601/app/kibana`
+   **Answer:**     `http://<PublicIPAddressOfELK-Net>:5601/app/kibana`
 
 
