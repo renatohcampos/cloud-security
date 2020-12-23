@@ -4,7 +4,7 @@ The files in this repository were used to configure the network depicted below.
 
 ![elk-diagram](../Diagrams/elk-diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select YAML files such as`filebeat.yml`may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select YAML files such as `filebeat.yml` may be used to install only certain pieces of it, such as Filebeat.
 
 **filebeat.yml**
 
@@ -61,12 +61,11 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 Load balancing ensures that the application will be highly availiable, in addition to restricting access to the network.
 - Load balancers protect the availiability aspect of the CIA triad. The advantage of a JumpBox-Provisioner machine is that 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the foiles and system security.
+- Filebeat watches for changes to files (or their locations) as previously specified and then forwards them to Elasticsearch and Logstash for indexing.
+- Metricbeat records system's CPU usage, memory, file system, disk usage, and network statistics.
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name                  | Function      | IP Address    | Operating System |
 | --------------------- | ------------- | ------------- | ---------------- |
@@ -81,11 +80,11 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the JumpBox-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- This should be your own public IP address. *Sorry - not mentioning mine here!*
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by:
+- The Ansible Docker container within JumpBox-Provisioner.
 
 A summary of the access policies in place can be found in the table below.
 
@@ -98,7 +97,7 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+- This would take far too much time to do and you would have to set up new routes, users, software, and manage the Operating System - each new node at a time.
 
 The playbook implements the following tasks:
 - _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
@@ -125,13 +124,22 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the YAML playbook files to `roles`, and their associated configuration files to `files`.
+- Update the `hosts` file to include the added node's local IP, and the `ansible.cfg` to include a user for the node.
+- Run the playbook, and navigate to the new node to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+### Questions
+
+-  **Question:** Which file is the playbook? Where do you copy it?
+
+  **Answer:** Playbook files should be within the Ansible directory. In this case there are playbooks in the Ansible directory, and in the roles directory. The important thing to note here is that when the playbook is called, the the proper filepath is used.
+
+- **Question:** Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+
+  **Answer:** `my-playbook.yml`
+
+- **Question:**   Which URL do you navigate to in order to check that the ELK server is running?
+
+   **Answer:**     `http://<>:5601/app/kibana`
 
 
